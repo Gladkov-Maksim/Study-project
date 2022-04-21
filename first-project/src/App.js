@@ -1,23 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import Paragraph from './components/paragraph.jsx'
+import Link from './components/link.jsx'
+import Image from './components/image.jsx'
 
 function App() {
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Image />
+        <Paragraph children="Edit <code>src/App.js</code> and save to reload."/>
+        <Link to="https://reactjs.org"/>
       </header>
     </div>
   );
