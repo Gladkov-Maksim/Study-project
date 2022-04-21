@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Paragraph from './components/paragraph.jsx'
 import Link from './components/link.jsx'
@@ -10,7 +9,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Image />
-        <Paragraph children="Edit <code>src/App.js</code> and save to reload."/>
+        <Paragraph>Edit <code>src/App.js</code> and save to reload.</Paragraph>
         <Link to="https://reactjs.org"/>
       </header>
     </div>
