@@ -105,3 +105,4 @@ dist
 node_modules
 .idea/
 first-project/package-lock.json
+first-project/build
