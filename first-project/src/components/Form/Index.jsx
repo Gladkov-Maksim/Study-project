@@ -11,7 +11,7 @@ const Form = () => {
       <input
         type="text"
         placeholder="name"
-        autoComplete="off"
+        // autoComplete="off"
         onChange={(e) => setFormData(prev => ({name: e.target.value, password: prev.password, a: prev.a}))}
       />
       <input type="password" autoComplete="off" />
