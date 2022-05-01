@@ -7,6 +7,8 @@ import Table from './components/table/table.jsx'
 import Form from './components/Form/Index'
 import ReactTable from './components/React-table/React-table'
 import InputDoubler from './components/Input-doubler/Input-doubler'
+import InputNumber from './components/Input-number/Input-number'
+import Validation from './components/Validation/Validation'
 
 const headersArr = ['id', 'name', 'surname', 'age']
 const tableContent = [{ id: 1, name: "Петр", surname: "Васичкин", age: 22 }, { id: 2, name: "Василий", surname: "Иванов", age: 12 }, { id: 3, name: "Иван", surname: "Сидоров", age: 32 }]
@@ -22,6 +24,8 @@ function App() {
         <Form/>
         {/* <ReactTable/> */}
         <InputDoubler />
+        <InputNumber />
+        <Validation />
       </header>
     </div>
   );

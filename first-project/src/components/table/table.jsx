@@ -23,7 +23,7 @@ function Table(props) {
       })}
       </tbody>
     </table>,
-    <div>fdsfsdf</div>
+    <div></div>
   ]
 }
 
