@@ -1,5 +1,14 @@
 import {useState} from "react";
 
+const validation = (values) => {
+  const errors = {}
+
+  if(!values.name) errors.name = "Field name is required"
+
+  return errors
+}
+
+
 const Form = () => {
   const [formData, setFormData] = useState({name: "", password: "", a: null})
 
