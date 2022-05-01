@@ -1,0 +1,11 @@
+.doubler {
+    width: 200px;
+    height: 1.5em;
+    border: 1px solid #61dafb;
+    border-radius: 5px;
+    margin: 0 auto 20px auto;
+}
+
+input {
+    margin: 10px;
+}

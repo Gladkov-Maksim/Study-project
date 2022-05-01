@@ -1,0 +1,43 @@
+.wrapper {
+    /* width: 622px;
+    height: 439px; */
+    padding: 64px;
+    border: 1px solid white;
+    margin: 20px;
+}
+
+.wrapper input {
+    border-radius: 0%;
+    font-size: 15px;    
+    line-height: 24px;
+    padding: 8px 14px;
+    /* box-sizing: border-box; */
+}
+
+.header {
+    text-align: left;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.password input, .email input {
+    width: 100%;
+}
+
+.butttonWrapper {
+    display: flex;
+    align-items: flex-start;
+}
+
+.butttonWrapper button {
+    background: #61dafb;
+    border-radius: 5px;
+    border: none;
+    font-size: 15px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.butttonWrapper button:hover {
+    background: #8ee7ff;
+}
