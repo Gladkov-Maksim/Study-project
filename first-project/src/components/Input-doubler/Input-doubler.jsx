@@ -5,12 +5,14 @@ const installState = ''
 
 const InputDoubler = () => {
     const [state, setState] = useState(installState)
-    const submitForm = (event) => {
+
+    const submitForm = (text) => (event) => {
         event.preventDefault()
-        console.log(state)
+        console.log(text)
     }
+
     return (
-        <form onSubmit={submitForm}>
+        <form onSubmit={submitForm(state)}>
             <div>ДУБЛЕР + ВЫВОД В КОНСОЛЬ</div>
             {/* <label> Зачем в примере здесь label?*/}
             <input className={styles.input} type="text" onChange={(e) => setState(e.target.value)}/>

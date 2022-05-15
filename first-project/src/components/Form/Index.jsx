@@ -1,6 +1,15 @@
 import {useState} from "react";
 import styles from "./index.module.css"
 
+const validation = (values) => {
+  const errors = {}
+
+  if(!values.name) errors.name = "Field name is required"
+
+  return errors
+}
+
+
 const Form = () => {
   const [formData, setFormData] = useState({name: "", password: "", a: null})
 
