@@ -14,7 +14,7 @@ const InputNumber = () => {
     return (
         <>
             <div>КВАДРАТЫ</div>
-            <input type="number" onChange={(e) => setState(e.target.value)}/>
+            <input className={styles.input} type="number" onChange={(e) => setState(e.target.value)}/>
             {redSquare(state)}
         </>
     )

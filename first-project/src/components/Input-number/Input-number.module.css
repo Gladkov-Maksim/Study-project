@@ -2,6 +2,10 @@ input {
     border-radius: 5px;
 }
 
+.input {
+    margin: 10px;
+}
+
 .square {
     width: 30px;
     height: 30px;

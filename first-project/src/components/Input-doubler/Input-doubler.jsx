@@ -13,8 +13,8 @@ const InputDoubler = () => {
         <form onSubmit={submitForm}>
             <div>ДУБЛЕР + ВЫВОД В КОНСОЛЬ</div>
             {/* <label> Зачем в примере здесь label?*/}
-            <input type="text" onChange={(e) => setState(e.target.value)}/>
-            <input type="submit"></input>
+            <input className={styles.input} type="text" onChange={(e) => setState(e.target.value)}/>
+            <input className={styles.input} type="submit"></input>
             {/* </label> */}
             <div className={styles.doubler}>{state}</div>
         </form>

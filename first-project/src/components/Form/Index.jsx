@@ -1,4 +1,5 @@
 import {useState} from "react";
+import styles from "./index.module.css"
 
 const Form = () => {
   const [formData, setFormData] = useState({name: "", password: "", a: null})
@@ -14,9 +15,9 @@ const Form = () => {
         // autoComplete="off"
         onChange={(e) => setFormData(prev => ({name: e.target.value, password: prev.password, a: prev.a}))}
       />
-      <input type="password" autoComplete="off" />
-      <input type="radio" name="a"/>
-      <input type="radio" name="a"/>
+      <input className={styles.input} type="password" autoComplete="off" />
+      <input className={styles.input} type="radio" name="a"/>
+      <input className={styles.input} type="radio" name="a"/>
       <button>Send</button>
     </form>
   )

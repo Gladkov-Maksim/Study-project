@@ -10,8 +10,9 @@
     border-radius: 0%;
     font-size: 15px;    
     line-height: 24px;
-    padding: 8px 14px;
-    /* box-sizing: border-box; */
+    padding: 5px 14px;
+    box-sizing: border-box;
+    margin: 10px 0;
 }
 
 .header {
@@ -20,24 +21,43 @@
     font-weight: 700;
 }
 
+.nameAndLastName {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nameAndLastName > div {
+    width: 46%;
+}
+
 .password input, .email input {
     width: 100%;
 }
 
-.butttonWrapper {
+.buttonWrapper {
     display: flex;
     align-items: flex-start;
 }
 
-.butttonWrapper button {
+.buttonWrapper button {
     background: #61dafb;
     border-radius: 5px;
     border: none;
     font-size: 15px;
     padding: 10px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
-.butttonWrapper button:hover {
+.buttonWrapper button:hover {
     background: #8ee7ff;
+}
+
+.buttonWrapper button:active {
+    background: #fff;
+}
+
+.error {
+    color: red;
+    font-size: 12px;;
 }
