@@ -11,6 +11,7 @@ import InputNumber from './components/Input-number/Input-number'
 import Validation from './components/Validation/Validation'
 import Dropdown from './components/Dropdown/Dropdown'
 import ToDo from './components/ToDo/ToDo'
+import ColorConverter from './components/Color-converter/Color-converter'
 
 const headersArr = ['id', 'name', 'surname', 'age']
 const tableContent = [{ id: 1, name: "Петр", surname: "Васичкин", age: 22 }, { id: 2, name: "Василий", surname: "Иванов", age: 12 }, { id: 3, name: "Иван", surname: "Сидоров", age: 32 }]
@@ -30,6 +31,7 @@ function App() {
         <Validation />
         <Dropdown />
         <ToDo />
+        <ColorConverter />
       </header>
     </div>
   );

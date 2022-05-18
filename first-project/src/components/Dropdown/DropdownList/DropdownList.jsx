@@ -14,8 +14,12 @@ const DropdownList = () => {
     const [ state, setState ] = useState(0)
 
     return (
-        <ul data-id="dropdown" className="dropdown"> {/* напомни, пожалуйста, зачем нужны key*/}
-            {items.map((item, index) => <li key={item + index} onClick={setState(index)} className={state === index ? 'active' : ''}><a href="#">{item}</a></li>)}
+        <ul data-id="dropdown" className="dropdown">
+            {items.map((item, index) => <li
+                key={item + index}
+                onClick={() => setState(index)}
+                className={state === index ? 'active' : ''}><a href="#">{item}</a></li>
+            )}
         </ul> 
     )
 }

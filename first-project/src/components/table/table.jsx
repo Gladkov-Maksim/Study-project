@@ -6,18 +6,18 @@ function Table(props) {
   return [
     <table>
       <thead>
-      <tr>
-        {headers.map((h, key) => <td key={key + h}>{h}</td>)}
-      </tr>
+        <tr>
+          {headers.map((h, index) => <td key={index + h}>{h}</td>)}
+        </tr>
       </thead>
       <tbody>
-      {content.map((c, key) => {
+      {content.map((c, index) => {
         return (
-          <tr key={c.id + key}>
-            <td>{c.id}</td>
-            <td>{c.name}</td>
-            <td>{c.surname}</td>
-            <td>{c.age}</td>
+          <tr key={c.id + index + 'строка'}>
+            <td key={c.id}>{c.id}</td>
+            <td key={c.name}>{c.name}</td>
+            <td key={c.surname}>{c.surname}</td>
+            <td key={c.age}>{c.age}</td>
           </tr>
         )
       })}

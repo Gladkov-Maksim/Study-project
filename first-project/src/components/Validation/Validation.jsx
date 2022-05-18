@@ -11,56 +11,92 @@ const patterns = {
 const valid = (values) => {
     const errors = {}
     if (!values.name) errors.name = 'Имя не заполнено'
-    if (!patterns.name.test(values.name)) errors.name = 'Имя должно содержать только кириллицу и начинаться с заглавной буквы'
+    if (values.name && !patterns.name.test(values.name)) errors.name = 'Имя должно содержать только кириллицу и начинаться с заглавной буквы'
     if (!values.lastName) errors.lastName = 'Фамилия не заполнена'
+    if (values.lastName && !patterns.lastName.test(values.lastName)) errors.lastName = 'Фамилия должна содержать только кириллицу и начинаться с заглавной буквы'
     if (!values.email) errors.email = 'Email не заполнен'
+    if (values.email && !patterns.email.test(values.email)) errors.email = 'Некорректный формат Email'
     if (!values.password) errors.password = 'Пароль не заполнен'
+    if (values.password && !patterns.password.test(values.password)) errors.password = 'Пароль должен содержать больше 8 символов'
     return errors
 }
 
 const Validation = () => {
+    const [formData, setFormData] = useState({name: '', surname: '', email: '', password: ''})
+    const [errors, setErrors] = useState(valid(formData))
+    const [touches, setTouches] = useState({name: false, lastName: false, email: false, password: false})
 
-    const [ formData, setFormData ] = useState({name: '', surname: '', email: '', password: ''})
+    const handleChangeInput = (field) => (e) => setFormData(prev => {
+        const newData = { ...prev, [field]: e.target.value }
+        setErrors(valid(newData))
+        return newData
+    })
 
-    const [errors, setErrors ] = useState({})
-
-    const visibleError = (typeOfInput) => {
-        // console.log(state)
-        return {display: (patterns[typeOfInput].test(formData[typeOfInput]) ? 'none': 'block')}
-    }
+    // noinspection JSCheckFunctionSignatures
+    const handleTouched = (field) => () => setTouches({...touches, [field] : true})
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>Sign up for a free account</div>
             <div className={styles.nameAndLastName}>
                 <div>
-                    <input 
+                    <input
+                        type="text"
                         value={formData.name} 
                         placeholder="First name" 
-                        onChange={(e) => setFormData((prev) => {
-                            const newData = { ...formData, name: e.target.value }
-                            setErrors(valid(newData))
-                            return newData
-                        })} 
-                        // onBlur={(e) => setFormData({ ...formData, name: e.target.value })} 
+                        onChange={handleChangeInput('name')}
+                        onBlur={handleTouched('name')}
                     />
-                    <div className={styles.error}>{errors.name}</div>
+                    <div>{/*Не до конца понял как сделать всплывающие окна*/}
+                        {errors.name && touches.name && <div className={styles.error}>{errors.name}</div>}
+                    </div>
                 </div>
                 <div>
-                    <input placeholder="Last name" data-type="lastName"></input>
-                    <div className={styles.error}>Неправильный формат фамилии</div>
+                    <input
+                        placeholder="Last name"
+                        type="text"
+                        onChange={handleChangeInput('lastName')}
+                        onBlur={handleTouched('lastName')}
+                    />
+                    <div>
+                        {errors.lastName && touches.lastName && <div className={styles.error}>{errors.lastName}</div>}
+                    </div>
                 </div>
             </div>
             <div className={styles.email}>
-                <input placeholder="Email address" data-type="email"></input>
-                <div className={styles.error}>Неправильный формат Email</div>
+                <input
+                    placeholder="Email address"
+                    type="email"
+                    onChange={handleChangeInput('email')}
+                    onBlur={handleTouched('email')}/>
+                <div>
+                    {errors.email && touches.email && <div className={styles.error}>{errors.email}</div>}
+                </div>
             </div>
             <div className={styles.password}>
-                <input placeholder="Create password" data-type="password"></input>
-                <div className={styles.error}>Неправильный формат пароля</div>
+                <input
+                    placeholder="Create password"
+                    type="password"
+                    onChange={handleChangeInput('password')}
+                    onBlur={handleTouched('password')}/>
+                <div>
+                    {errors.password && touches.password && <div className={styles.error}>{errors.password}</div>}
+                </div>
             </div>
             <div className={styles.buttonWrapper}>
-                <button disabled={false} onClick={() => console.log(1)}>Register</button>
+                <button
+                    disabled={false}
+                    onClick={() => {
+                        alert(`
+                            Имя:  ${formData.name ? formData.name : 'пусто'}\n
+                            Фамилия:  ${formData.lastName ? formData.lastName : 'пусто'}\n
+                            Email:  ${formData.email ? formData.email : 'пусто'}\n
+                            Пароль:  ${formData.password ? formData.password : 'пусто'
+                        }`)
+                    }}
+                >
+                    Register
+                </button>
             </div>
         </div>
     )
