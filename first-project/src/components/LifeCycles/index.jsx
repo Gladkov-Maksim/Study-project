@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const Clock = ({sec}) => { // почему sec в {}?
     const seconds = (sec % 60).toString()
@@ -6,19 +6,18 @@ const Clock = ({sec}) => { // почему sec в {}?
     return <div> {minutes.padStart(2, '0')} : {seconds.padStart(2, '0')} </div>
 }
 
-let timer = null
-
 export const Stopwatch = () => {
     const [sec, setSec] = useState(0)
     const [isLaunch, setIsLaunch] = useState(false)
+    const timer = useRef(null)
 
     useEffect(() => {
         if (isLaunch) {
-            timer = setInterval(() => {
+            timer.current = setInterval(() => {
                 setSec(prev => prev + 1)
             }, 1000)
         } else {
-            clearInterval(timer)
+            clearInterval(timer.current)
         }
     }, [isLaunch])
 
@@ -48,13 +47,15 @@ export const Timer = () => {
 
     const [ isLaunch, setLaunch ] = useState(false)
 
+    const timer = useRef(null)
+
     useEffect(() => {
         if (isLaunch) {
-            timer = setInterval(() => {
+            timer.current = setInterval(() => {
                 setSec(prev => prev > 0 ? prev - 1 : 0)
             }, 10)
         }
-        else clearInterval(timer)
+        else clearInterval(timer.current)
     }, [isLaunch])
 
     return (

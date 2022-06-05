@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useMemo } from 'react'
+import { useState, useCallback, useEffect, useMemo, useRef } from 'react'
 import styles from './Color-converter.module.css'
 import background from './background.jpg'
 
@@ -7,6 +7,7 @@ const ColorConverter = () => {
     const [ valid , setValid ] = useState(false)
     const [ hexState, setHexState ] = useState('')
     const [ rgbState, setRgbState ] = useState({})
+    const hexInputRef = useRef(null) // {current: null}
 
     useEffect( () => {
         if (valid) { // - костыль, но сам запутался и  не знаю как по-другому
@@ -16,6 +17,10 @@ const ColorConverter = () => {
             setRgbState({r: red, g: green, b: blue})
         }
     }, [valid])
+
+    useEffect(() => {
+        hexInputRef.current.focus()
+    }, [])
 
     useEffect(() => {
         setValid(/^#[\da-f]{6}$/.test(hexState))
@@ -38,6 +43,7 @@ const ColorConverter = () => {
         >
                 <input
                     type="text"
+                    ref={hexInputRef}
                     maxLength={7}
                     onChange={handleInputChange}
                     onBlur={ () => setTouched(true)}

@@ -13,6 +13,7 @@ import Dropdown from './components/Dropdown/Dropdown'
 import ToDo from './components/ToDo/ToDo'
 import ColorConverter from './components/Color-converter/Color-converter'
 import {Stopwatch, Timer} from './components/LifeCycles'
+import Counter from './components/Counter'
 
 const headersArr = ['id', 'name', 'surname', 'age']
 const tableContent = [{ id: 1, name: "Петр", surname: "Васичкин", age: 22 }, { id: 2, name: "Василий", surname: "Иванов", age: 12 }, { id: 3, name: "Иван", surname: "Сидоров", age: 32 }]
@@ -32,8 +33,8 @@ function App() {
         {/*<Validation />*/}
         {/*<Dropdown />*/}
         {/*<ToDo />*/}
-        <ColorConverter />
-          <Timer />
+        {/*<ColorConverter />*/}
+        {/*  <Timer />*/}
       </header>
     </div>
   );
