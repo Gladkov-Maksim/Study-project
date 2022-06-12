@@ -3,32 +3,54 @@ import styles from './Color-converter.module.css'
 import background from './background.jpg'
 
 const ColorConverter = () => {
-    const [ touched, setTouched ] = useState(false)
-    const [ valid , setValid ] = useState(false)
+    const [ hexTouched, setHexTouched ] = useState(false)
+    const [ rgbTouched, setRgbTouched ] = useState(false)
+    const [ hexValid , setHexValid ] = useState(false)
+    const [ rgbValid , setRgbValid ] = useState(false)
     const [ hexState, setHexState ] = useState('')
     const [ rgbState, setRgbState ] = useState({})
-    const hexInputRef = useRef(null) // {current: null}
+
+    const hexInputRef = useRef(null)
+    const rgbInputRef = useRef(null)
 
     useEffect( () => {
-        if (valid) { // - костыль, но сам запутался и  не знаю как по-другому
+        if (hexValid) { // - костыль, но сам запутался и  не знаю как по-другому
             const red = parseInt(hexState.slice(1,3), 16)
             const green = parseInt(hexState.slice(3,5), 16)
             const blue = parseInt(hexState.slice(5,7), 16)
             setRgbState({r: red, g: green, b: blue})
         }
-    }, [valid])
+    }, [hexValid])
 
     useEffect(() => {
         hexInputRef.current.focus()
+        hexInputRef.current.value = '#'
+        rgbInputRef.current.value = 'rgb()'
     }, [])
 
     useEffect(() => {
-        setValid(/^#[\da-f]{6}$/.test(hexState))
+        setHexValid(/^#[\da-f]{6}$/.test(hexState))
     }, [hexState])
 
-    const handleInputChange = useCallback((e)=> setHexState(e.target.value), [])
+    useEffect(() => {
+        setRgbValid(/^rgb([0-255],[0-255],[0-255])$/.test(hexState))
+    }, [rgbState])
 
-    const containerStyle = useMemo( ()=> valid ? {backgroundColor: `rgb(${rgbState.r},${rgbState.g},${rgbState.b})`} : {backgroundImage: `url(${background}`}, [valid, rgbState])
+    // const hexInput = useRef()
+
+    const handleInputChange = useCallback((ref) => ()=> {
+        if (ref.current.dataset.type === 'hex' ) {
+            if (ref.current.value[0] !== '#') {
+                ref.current.value = '#' + ref.current.value
+            }
+            setHexState(ref.current.value)
+        }
+        else if (ref.current.dataset.type === 'rgb') {
+            setHexState(ref.current.value)
+        }
+        }, [])
+
+    const containerStyle = useMemo( ()=> hexValid ? {backgroundColor: `rgb(${rgbState.r},${rgbState.g},${rgbState.b})`} : {backgroundImage: `url(${background}`}, [hexValid, rgbState])
      /***
             TODO: Сделать валидацию hexState
             первый символ = #,
@@ -41,20 +63,32 @@ const ColorConverter = () => {
             className={styles.wrapper}
             style={containerStyle}
         >
+            <div>
                 <input
                     type="text"
+                    data-type="hex"
                     ref={hexInputRef}
                     maxLength={7}
-                    onChange={handleInputChange}
-                    onBlur={ () => setTouched(true)}
+                    onChange={handleInputChange(hexInputRef)}
+                    onBlur={ () => setHexTouched(true)}
                 />
-                {!valid && touched && <div className={styles.error}>Название цвета должно начинаться с # и содержать цифры или буквы от a до f</div>}
-                <div className={styles.rgb}>
-                    <span>
-                        {valid && `rgb(${rgbState.r},${rgbState.g},${rgbState.b})`}
-                    </span>
+                {!hexValid && hexTouched && <div className={styles.error}>Название цвета должно начинаться с # и содержать цифры или буквы от a до f</div>}
+                <input
+                    type="text"
+                    data-type="rgb"
+                    ref={rgbInputRef}
+                    maxLength={16}
+                    onBlur={ () => setRgbTouched(true)}
+                    onChange={handleInputChange(rgbInputRef)}
+                />
+                {!rgbValid && rgbTouched && <div className={styles.error}>Название цвета должно иметь вид rgb(0-255,0-255,0-255)</div>}
+                {/*<div className={styles.rgb}>*/}
+                {/*    <span>*/}
+                {/*        {valid && `rgb(${rgbState.r},${rgbState.g},${rgbState.b})`}*/}
+                {/*    </span>*/}
 
-                </div>
+                {/*</div>*/}
+            </div>
         </div>
     )
 }

@@ -33,8 +33,9 @@ function App() {
         {/*<Validation />*/}
         {/*<Dropdown />*/}
         {/*<ToDo />*/}
-        {/*<ColorConverter />*/}
+        <ColorConverter />
         {/*  <Timer />*/}
+          <Counter defaultCount={2}/>
       </header>
     </div>
   );
