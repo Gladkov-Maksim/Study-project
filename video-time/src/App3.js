@@ -31,8 +31,8 @@ function yearHOC (Component) {
                 return {...item, year: year}
             }
         })
-        props.list = list
-        return Component.apply(null, [props])
+        //props.list = list
+        return Component.apply(null, [Object.assign({}, props, {list:list})])
     }
 }
 const ModernYear = yearHOC(YearTable)
