@@ -149,6 +149,34 @@ function monthHOC (Component) {
 
 const ModernMonth = monthHOC(MonthTable)
 
+function FetchTable (props) {
+    return (
+        <div>
+            <h2>Fetch Table</h2>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                </tr>
+                {props.list.map(item => (
+                    <tr>
+                        <td>{item.date}</td>
+                        <td>{item.amount}</td>
+                    </tr>
+                ))}
+            </table>
+        </div>
+    );
+}
+
+function FetchHOC (Component) {
+    return async function (props) {
+        const json = await fetch(props.url)
+        return Component.apply(null, [json])
+    }
+}
+
+const DataFetchComponent = FetchHOC(FetchTable)
 // TODO:
 // 1. Загрузите данные с помощью fetch: https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/hoc/aggregation/data/data.json
 // 2. Не забудьте вынести URL в переменные окружения (не хардкодьте их здесь)
@@ -169,6 +197,7 @@ export default function App () {
                 <ModernMonth list={list} />
                 <ModernYear list={list} />
                 <ModernSort list={list} />
+                <DataFetchComponent url={'https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/hoc/aggregation/data/data.json'}/>
             </div>
         )
 }
