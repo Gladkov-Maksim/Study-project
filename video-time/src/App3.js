@@ -158,7 +158,7 @@ function FetchTable (props) {
                     <th>Date</th>
                     <th>Amount</th>
                 </tr>
-                {props.list.map(item => (
+                {props && props.list && props.list.map(item => (
                     <tr>
                         <td>{item.date}</td>
                         <td>{item.amount}</td>
@@ -169,14 +169,24 @@ function FetchTable (props) {
     );
 }
 
-function FetchHOC (Component) {
-    return async function (props) {
-        const json = await fetch(props.url)
-        return Component.apply(null, [json])
+function FetchHOC (Component, url) {
+
+    const WithFetch = (props) => {
+      const [fetchData, setFetchData] = useState(null)
+
+      useEffect(() => {
+        fetch(url)
+          .then(res => res.json())
+          .then(data => setFetchData(data.list))
+      }, [])
+
+      return <Component list={fetchData} {...props}/>
     }
+
+  return WithFetch
 }
 
-const DataFetchComponent = FetchHOC(FetchTable)
+const DataFetchComponent = FetchHOC(FetchTable,'https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/hoc/aggregation/data/data.json')
 // TODO:
 // 1. Загрузите данные с помощью fetch: https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/hoc/aggregation/data/data.json
 // 2. Не забудьте вынести URL в переменные окружения (не хардкодьте их здесь)
@@ -197,7 +207,7 @@ export default function App () {
                 <ModernMonth list={list} />
                 <ModernYear list={list} />
                 <ModernSort list={list} />
-                <DataFetchComponent url={'https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/hoc/aggregation/data/data.json'}/>
+                <DataFetchComponent/>
             </div>
         )
 }
