@@ -1,31 +1,9 @@
-import {createSelector} from 'reselect'
+import {combineReducers} from "redux";
 
-const ReducerRecord = {
-  counter: 0
-}
+import counterReducer from './models/counter'
+import listReducer from './models/list'
 
-export default function reducer(state = ReducerRecord, action) {
-  const {type, payload} = action
-
-  switch (type) {
-    case 'CHANGE_COUNTER':
-      return Object.assign({}, state, {counter: payload})
-    case 'RESET_COUNTER':
-      return Object.assign({}, state, {counter: 0})
-    default:
-      return state
-  }
-}
-
-
-export const changeCounter = (counter) => ({
-  type: 'CHANGE_COUNTER',
-  payload: counter
+export default combineReducers({
+  counter: counterReducer,
+  list: listReducer
 })
-
-export const resetCounter = () => ({
-  type: 'RESET_COUNTER',
-})
-
-export const Selector = state => state
-export const CounterSelector = createSelector(Selector, state => state.counter)
