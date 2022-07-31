@@ -1,0 +1,35 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+input {
+  font-weight: bold;
+}
+
+li {
+  width: 300px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+li .itemContainer {
+  display: flex;
+  align-items: center;
+}
+
+li .itemContainer  span{
+  margin-right: 10px;
+}
+
+button {
+  cursor: pointer;
+}
+ul button {
+  height: 25px;
+  width: 30px;
+}
+
+
