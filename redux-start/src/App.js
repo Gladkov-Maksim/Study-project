@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {changeCounter, resetCounter, CounterSelector} from "./redux/reducers";
+import {changeCounter, resetCounter, CounterSelector} from "./redux/models/counter";
 import Table from './Components/Table'
 import './App.css';
 

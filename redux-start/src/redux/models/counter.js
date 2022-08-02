@@ -1,5 +1,6 @@
 import {createSelector} from 'reselect'
 
+const moduleName = 'counter'
 const ReducerRecord = {
   counter: 0
 }
@@ -27,5 +28,5 @@ export const resetCounter = () => ({
   type: 'RESET_COUNTER',
 })
 
-export const Selector = state => state
+export const Selector = state => state[moduleName]
 export const CounterSelector = createSelector(Selector, state => state.counter)
