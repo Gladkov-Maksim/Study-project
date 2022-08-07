@@ -6,15 +6,27 @@ import reportWebVitals from './reportWebVitals';
 import {createStore} from "redux";
 import {Provider} from 'react-redux'
 
-const reducer = (state = [], action) => {
+
+const reducer = (store = {list:[], search: []}, action) => {
     switch (action.type) {
-        case 'ADD': return [...state, action.payload]
+        case 'ADD': return {...store, list: [...store.list, action.payload]}
         case 'REMOVE':
-            const newState = [...state]
-            newState.splice(action.payload, 1)
-            return newState
-        default: return state
+            const newList = [...store.list]
+            newList.splice(action.payload, 1)
+            return {...store, list: newList}
+        default: return store
+        case 'SEARCH':
+            return {...store, search: filterList(store, action.payload)}
     }
+}
+
+const filterList = (store, sub) => {
+    const regexp = new RegExp(`^${sub}`)
+    return (store.list.filter(item => {
+        if (regexp.test(item.service) || regexp.test(item.price)) {
+            return item
+        }
+    }))
 }
 
 const store = createStore(reducer)

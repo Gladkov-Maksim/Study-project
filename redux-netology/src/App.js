@@ -1,11 +1,13 @@
 import  './App.css';
 import {useDispatch, useSelector} from "react-redux";
-import {useRef, useCallback} from "react";
+import {useRef, useCallback, useState} from "react";
 
 function App() {
 
     const dispatch = useDispatch()
-    const list = useSelector(state => state)
+    const list = useSelector(store => store.list)
+    const searchList = useSelector(store => store.search)
+    const [searchToggle, setSearchToggle] = useState(false)
     const serviceInp = useRef(null)
     const priceInp = useRef(null)
     const addItem = useCallback(() => {
@@ -16,25 +18,52 @@ function App() {
         }
     }, [])
 
+    const search = (value) => {
+        if (value) {
+            setSearchToggle(true)
+            dispatch({type: 'SEARCH', payload: value})
+        }
+        else setSearchToggle(false)
+    }
+
+    const debounce = (fn) => {
+        let timer
+        return function (value){
+            clearTimeout(timer)
+            timer = setTimeout(fn.bind(null, value), 500)
+        }
+    }
+
+    const searchDebounce = debounce(search)
+
   return (
     <div className='wrapper'>
         <div>
             <input
+                placeholder='🔧Service'
                 ref={serviceInp}
                 onKeyDown={(e) => {
                     if (e.code === "Enter") addItem()
                 }}
             />
             <input
+                placeholder='💰Price'
                 ref={priceInp}
                 onKeyDown={(e) => {
                     if (e.code === "Enter") addItem()
                 }}
             />
             <button onClick={addItem}>Save</button>
+            <button onClick={() => {
+                serviceInp.current.value = ''
+                priceInp.current.value = ''
+            }}>Cancel</button>
+            <input placeholder='🔎Search' onChange={(e) => {
+                searchDebounce(e.target.value)
+            }}/>
         </div>
         <ul>
-            {list.map((item, index) =>
+            {(searchToggle ? searchList : list).map((item, index) =>
                 <li key={item.price}>
                     <div className='itemContainer'>
                         <span>{item.service} {item.price}</span>
