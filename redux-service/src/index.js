@@ -10,6 +10,11 @@ import {Provider} from 'react-redux'
 const reducer = (store = {list:[], search: []}, action) => {
     switch (action.type) {
         case 'ADD': return {...store, list: [...store.list, action.payload]}
+        case 'EDIT':
+            const editList = [...store.list]
+            editList.splice(action.payload.indexEditingItem, 1, action.payload.data)
+            console.log(editList)
+            return {...store, list: editList}
         case 'REMOVE':
             const newList = [...store.list]
             newList.splice(action.payload, 1)
