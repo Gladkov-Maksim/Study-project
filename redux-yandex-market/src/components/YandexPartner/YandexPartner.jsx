@@ -1,7 +1,7 @@
 import styles from './YandexPartner.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {useCallback, useRef, useState} from "react";
-import {addCard} from "../../redux/reducers";
+import {addCard, add} from "../../redux/reducers";
 
 const patterns = {
     name: /./,
@@ -51,7 +51,7 @@ const YandexPartner = () => {
             if (item === true) return item
         })
         if (fieldVerification.length === 0 && checkMark === true) {
-            dispatch(addCard(name, currentPrice, initialPrice, photo))
+            dispatch(add(addCard(name, currentPrice, initialPrice, photo)))
             name.current.value = ''
             currentPrice.current.value = ''
             initialPrice.current.value = ''

@@ -3,38 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
 import {Provider} from 'react-redux'
+import store from './redux/store.js'
+import logger from 'redux-logger'
 
 
-const reducer = (store = {list:[], search: []}, action) => {
-    switch (action.type) {
-        case 'ADD': return {...store, list: [...store.list, action.payload]}
-        case 'EDIT':
-            const editList = [...store.list]
-            editList.splice(action.payload.indexEditingItem, 1, action.payload.data)
-            console.log(editList)
-            return {...store, list: editList}
-        case 'REMOVE':
-            const newList = [...store.list]
-            newList.splice(action.payload, 1)
-            return {...store, list: newList}
-        default: return store
-        case 'SEARCH':
-            return {...store, search: filterList(store, action.payload)}
-    }
-}
 
-const filterList = (store, sub) => {
-    const regexp = new RegExp(`^${sub}`)
-    return (store.list.filter(item => {
-        if (regexp.test(item.service) || regexp.test(item.price)) {
-            return item
-        }
-    }))
-}
 
-const store = createStore(reducer)
+
+
+// const store = createStore(reducer, applyMiddleware(logger))
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

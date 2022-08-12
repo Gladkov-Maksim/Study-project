@@ -32,7 +32,8 @@ const addPoints = (str) => {
 
 const YandexMarket = () => {
 
-    const data = useSelector(store => store.data)
+    const data = useSelector(store => store.toolkit.data)
+    console.log(data)
 
     return (
         <div className={styles.wrapper}>

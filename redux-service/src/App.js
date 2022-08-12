@@ -1,15 +1,24 @@
 import  './App.css';
 import {useDispatch, useSelector} from "react-redux";
 import {useRef, useCallback, useState} from "react";
+import { add, edit, remove, search } from './redux/slice.js'
 
 let indexEditingItem
+
+const filterList = (list, sub) => {
+    const regexp = new RegExp(`^${sub}`)
+    return (list.filter(item => {
+        if (regexp.test(item.service) || sub === item.price) {
+            return item
+        }
+    }))
+}
 
 function App() {
 
     const dispatch = useDispatch()
-    const list = useSelector(store => store.list)
-    const searchList = useSelector(store => store.search)
-    const [searchToggle, setSearchToggle] = useState(false)
+    const list = useSelector(store => store.toolkit.list)
+    const searchList = useSelector(store => store.toolkit.search)
     const [isEditing, setIsEditing] = useState(false)
     const serviceInp = useRef(null)
     const priceInp = useRef(null)
@@ -18,24 +27,16 @@ function App() {
     const addItem = useCallback(() => {
         if (serviceInp.current.value && priceInp.current.value) {
             if (!isEditing) {
-                dispatch({type: 'ADD', payload: {service: serviceInp.current.value, price: priceInp.current.value}})
+                dispatch(add({service: serviceInp.current.value, price: priceInp.current.value}))
             }
             else {
-                dispatch({type: 'EDIT', payload: {data: {service: serviceInp.current.value, price: priceInp.current.value}, indexEditingItem: indexEditingItem}})
+                dispatch(edit({data: {service: serviceInp.current.value, price: priceInp.current.value}, indexEditingItem: indexEditingItem}))
                 setIsEditing(false)
             }
             serviceInp.current.value = ''
             priceInp.current.value = ''
         }
     }, [isEditing])
-
-    const search = (value) => {
-        if (value) {
-            setSearchToggle(true)
-            dispatch({type: 'SEARCH', payload: value})
-        }
-        else setSearchToggle(false)
-    }
 
     const debounce = (fn) => {
         let timer
@@ -45,7 +46,7 @@ function App() {
         }
     }
 
-    const searchDebounce = debounce(search)
+    const searchDebounce = debounce((value) => dispatch(search(filterList(list, value))))
 
   return (
     <div className='wrapper'>
@@ -76,7 +77,7 @@ function App() {
             }}/>
         </div>
         <ul>
-            {(searchToggle ? searchList : list).map((item, index) =>
+            {(searchList.length ? searchList : list).map((item, index) =>
                 <li key={index + item.price}>
                     <div className='itemContainer'>
                         <span>{item.service} {item.price}</span>
@@ -92,7 +93,7 @@ function App() {
                             ✎
                         </button>
                         <button
-                            onClick={() => dispatch({type: 'REMOVE', payload: index})}
+                            onClick={() => dispatch(remove(index))}
                         >Х</button>
                     </div>
                 </li>
