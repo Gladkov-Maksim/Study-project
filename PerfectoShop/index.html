@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог</title>
+    <link rel="stylesheet" href="css/common.css">
+    <style>
+        @font-face {
+            font-family: Font;
+            src: url(fonts/Worksans.woff2) format('woff2');
+        }
+
+        body {
+            font-family: Font, sans-serif;
+            margin: 0;
+        }
+
+        header {
+            /* не может быть одновременно flex и fixed?  */
+            position: fixed;
+            width: 100%;
+            /* Растянулся не на всю ширину экрана */
+            background-color: white;
+            padding-bottom: 20px;
+            top: 0;
+
+        }
+
+        /* как сделать флекс элементы разной высоты? */
+        header>div {
+            justify-content: space-between;
+            padding: 55px 100px 0 100px;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        header > div > :first-child {
+            /* когда нужно писать first-cild без пробела, а когда с ним?*/
+            width: 236px;
+            margin-right: 60px;
+        }
+
+        main {
+            margin-top: 155px;
+            /* почему-то не работает с margin */
+        }
+
+        main>:first-child {
+            width: 100%;
+        }
+
+        .head a {
+            cursor: pointer;
+        }
+
+        .headText {
+            text-decoration: none;
+            color: black;
+        }
+
+        .headText:hover {
+            color: rgb(110, 110, 110);
+        }
+
+        .logo {
+            width: 220px;
+            margin-right: 50px;
+        }
+
+        .hederIcons div {
+            margin-right: 50px;
+            display: inline-block;
+        }
+
+        .shop {
+            padding: 110px 140px 80px 140px;
+            display: flex;
+        }
+
+        .shop>:last-child {
+            margin-left: 60px;
+        }
+
+        .filter {
+            border: 1px solid black;
+            padding: 0px 10px 50px 25px;
+        }
+
+        .filter label {
+            margin-bottom: 10px;
+            display: block;
+            font-size: 18px;
+        }
+
+        .filter input {
+            margin-right: 5px;
+        }
+
+        .filter .header {
+            font-weight: bold;
+            font-size: 24px;
+            margin: 45px 0 35px 0;
+            padding-left: 40px;
+        }
+
+        .filter a {
+            color: black;
+            font-size: 18px;
+            /* margin-top: 25px;   Почему-то не работает */
+            cursor: pointer;
+        }
+
+        .filter a:hover {
+            color: rgb(126, 126, 126);
+        }
+
+        .priceFilter {
+            margin-bottom: 20px;
+        }
+
+        .priceFilter :first-child {
+            margin-right: 25px;
+        }
+
+        .priceFilter img {
+            width: 12px;
+            margin-left: 5px;
+        }
+
+        .products {
+            display: flex;
+            /* justify-content: space-between; */
+            width: 930px;
+            flex-wrap: wrap;
+        }
+        .products > div {
+            margin-right: 30px;
+            margin-bottom: 45px;
+        }
+        .products .NameAndPrice {
+            margin: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .products .NameAndPrice :first-child {
+            font-size: 18px;
+        }
+
+        .products .NameAndPrice :last-child {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .products button {
+            width: 100%;
+            background: #1670E4;
+            color: white;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .photoBag {
+            background: url(image/bag.svg) 0 -15px /cover no-repeat;
+            width: 280px;
+            height: 300px;
+            margin-bottom: 30px;
+        }
+        .bg-team {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(0,0,0,0.6);
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: none;
+        }
+        .team {
+            width: 965px;
+            height: 500px;
+            background: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            padding-top: 50px;
+            transform: translate(-50%, -50%);
+        }
+        .team > div {
+            margin-bottom: 45px;
+            text-align: center;
+        }
+        .team > :first-child {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .team input, .team button {
+            width: 460px;
+            font-size: 20px;
+        }
+        .team input {
+            padding: 18px 40px;
+            box-sizing: border-box;
+        }
+        .team button {
+            border: none;
+            background: #1670E4;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .team a {
+            color: grey;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-team">
+        <div class="team"> <!-- Не знал в каком участке кода написать, поэтому решил здесь -->
+            <div>
+                ДОБРО ПОЖАЛОВАТЬ В<br>
+                PERFECTO.TEAM
+            </div>
+            <div>
+                <input type="text" placeholder="Логин">
+            </div>
+            <div>
+                <input type="text" placeholder="Пароль">
+            </div>
+            <div>
+                <button>Вход</button><br>
+                <a href="#">Восстановить пароль</a>
+            </div>
+        </div>
+    </div>
+    <header>
+        <div>
+            <div>
+                <a href="index.html">
+                    <img class="logo" src="image/logo.svg" alt>
+                </a>
+            </div>
+            <div>
+                <a class="headText" href="index.html">Каталог</a>
+            </div>
+            <div>
+                <a class="headText" href="Условия покупки.html">
+                    Условия покупки
+                </a>
+            </div>
+            <div>
+                <a class="headText" href="О Perfecto.html">
+                    О PERFECTO
+                </a>
+            </div>
+            <div class="hederIcons">
+                <div>
+                    <a href="Оформление заказа.html">
+                        <img src="image/packet.svg" alt>
+                    </a>
+                </div>
+                <div class="team-logo">
+                    <a href="#">
+                        <img src="image/team.svg" alt>
+                    </a>
+                </div>
+                <div>
+                    <img src="image/menu.svg" alt>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <img src="image/intro.png" alt>
+        <div class="shop">
+            <div class="filter">
+                <div class="header">
+                    Категория
+                </div>
+                <label>
+                    <input type="checkbox">
+                    Одежда и обувь
+                </label>
+                <label>
+                    <input type="checkbox">
+                    Аксессуары
+                </label>
+                <label>
+                    <input type="checkbox">
+                    Оплата абонементов
+                </label>
+                <div class="header">
+                    Размер
+                </div>
+                <label>
+                    <input type="checkbox">
+                    28 (4-5 лет)
+                </label>
+                <label>
+                    <input type="checkbox">
+                    28 (4-5 лет)
+                </label>
+                <label>
+                    <input type="checkbox">
+                    30 (6-7 лет)
+                </label>
+                <label>
+                    <input type="checkbox">
+                    32 (8-9 лет)
+                </label>
+                <label>
+                    <input type="checkbox">
+                    34 (10лет)
+                </label>
+                <label>
+                    <input type="checkbox">
+                    36 (11 лет)
+                </label>
+                <label>
+                    <input type="checkbox">
+                    38 (12 лет)
+                </label>
+                <label>
+                    <input type="checkbox">
+                    40 (от 13 лет)
+                </label>
+                <label>
+                    <input type="checkbox">
+                    42
+                </label>
+                <label>
+                    <input type="checkbox">
+                    44
+                </label>
+                <label>
+                    <input type="checkbox">
+                    46
+                </label>
+                <a href="Таблица размеров.html" target="blank">
+                    Таблица размеров
+                </a>
+            </div>
+            <div>
+                <div class="priceFilter">
+                    <span>
+                        Цена
+                    </span>
+                    <img src="image/down.svg" alt>
+                    <img src="image/slash.svg" alt>
+                    <img src="image/up.svg" alt>
+                </div>
+                <div class="products">
+                    <div>
+                        <div class="photoBag"></div>
+                        <div class="NameAndPrice">
+                            <span>Именной рюкзак</span>
+                            <span>11360₽</span>
+                        </div>
+                        <button>
+                            В корзину
+                        </button>
+                    </div>
+                    <div>
+                        <img src="image/tshort.jpg" alt>
+                        <div class="NameAndPrice">
+                            <span>Футболка детская</span>
+                            <span>990₽</span>
+                        </div>
+                        <button>
+                            В корзину
+                        </button>
+                    </div>
+                    <div>
+                        <img src="image/bottle.jpg" alt>
+                        <div class="NameAndPrice">
+                            <span>Бутылка для воды</span>
+                            <span>1990₽</span>
+                        </div>
+                        <button>
+                            В корзину
+                        </button>
+                    </div>
+                    <div>
+                        <img src="image/bottle.jpg" alt>
+                        <div class="NameAndPrice">
+                            <span>Бутылка для воды</span>
+                            <span>1990₽</span>
+                        </div>
+                        <button>
+                            В корзину
+                        </button>
+                    </div>
+                    <div>
+                        <img src="image/bottle.jpg" alt>
+                        <div class="NameAndPrice">
+                            <span>Бутылка для воды</span>
+                            <span>1990₽</span>
+                        </div>
+                        <button>
+                            В корзину
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div>
+            <a href="https://www.instagram.com/perfectodance/" target="_blank">
+                INSTAGRAM
+                <img src="image/bigdoth.svg" alt>
+            </a>
+            <a href="https://vk.com/perfectodance" target="_blank">
+                VKONTAKTE
+                <img src="image/bigdoth.svg" alt>
+            </a>
+            <a href="https://www.youtube.com/channel/UC-O3jL-1AchibrSEdfHZapA" target="_blank">
+                YOUTUBE
+                <img src="image/bigdoth.svg" alt>
+            </a>
+            <a href="#">
+                902 21 42
+            </a>
+        </div>
+        <div>
+            <a href="">
+                PERFECTO
+                <img src="image/smalldoth.svg" alt>
+            </a>
+            Детская танцевальная студия Евгении Яковлевой
+            <img src="image/smalldoth.svg" alt>
+            Санкт-Петербург
+        </div>
+    </footer>
+    <script>
+        const logo = document.querySelector('.team-logo')
+        const popUp = document.querySelector('.bg-team')
+        const content = popUp.querySelector('.team')
+        logo.onclick = () => {
+            popUp.style.display = 'block'
+        }
+        popUp.onclick = () => {
+            popUp.style.display = null
+        }
+        content.onclick = (e) => {
+            e.stopPropagation()
+        }
+    </script>
+</body>
+
+</html>

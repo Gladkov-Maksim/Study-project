@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблица размеров</title>
+    <style>
+        body {    /* сделать корректировку стилей, кодга будут ответы на вопросы из index  */
+            font-family: sans-serif;
+            margin: 0;
+        }
+         header {
+            position: fixed;
+            width: 100%;
+            background-color: white;
+            padding-bottom: 20px;
+        } 
+        header > div {
+            justify-content: space-between;
+            padding: 55px 100px 0 100px;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+        }
+        header > div >:first-child {
+            width: 236px;
+            margin-right: 60px;
+        }
+        .head a {
+            cursor: pointer;
+        }
+        .headText {
+            text-decoration: none;
+            color: black;
+        }
+        .headText:hover {
+            color: rgb(110, 110, 110);
+        }
+        .logo {
+            width: 220px;
+            margin-right: 50px;
+        }
+        .hederIcons div {
+            margin-right: 50px;
+            display: inline-block;
+        }
+        main {
+            padding: 175px 180px 140px 180px; /* с маргином вообще жуть */
+        }
+        main >:first-child {
+            font-size: 40px;
+            font-weight: bold;
+        }
+        main >:last-child {
+            display: flex;
+            justify-content: space-between;
+        }
+        table {
+            font-size: 18px;
+            /* border-collapse: collapse;  разница?*/
+            border-spacing: 0;
+        }
+        tbody >:first-child *{
+            padding-top: 20px;
+            border-top: 1px solid #7C7C7C;
+        }
+        thead * {
+            border-bottom: 1px solid #7C7C7C;
+            text-align: left;
+        }
+        td, th {
+            width: 68px;
+            padding-bottom: 10px;
+        }
+        tr :first-child {
+            width: 255px
+        }
+        tr :last-child {
+            width: 90px;
+        }
+        .tableName {
+            font-size: 40px;
+            color: #7C7C7C;
+            font-weight: bold;
+            margin-top: 82px;
+            margin-bottom: 40px;
+        }
+        .t2 tr :nth-child(2), .t2 tr :nth-child(3), .t2 tr :nth-child(4){
+            width: 50px;
+        }
+        .t2 tr :last-child {
+            width: 65px;
+        }
+        .reference {
+            margin-top: 85px;
+            width: 255px;
+            padding: 50px 17px 100px 40px;
+            border: 1px solid black;
+        }
+        .reference img {
+            margin-right: 16px;
+        }
+        .reference >:nth-child(2n + 1) {
+            color: #7C7C7C;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 18px;
+        }
+        .reference >:nth-child(2n) {
+            margin-bottom: 40px;
+            font-size: 18px; 
+        }
+        footer {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        footer >:first-child {
+          margin-bottom: 25px;
+        }
+        footer :first-child a {
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+        footer div * {
+            vertical-align: middle;
+        }
+        footer a:hover {
+            color: rgb(126, 126, 126);
+        }
+        footer img {
+            margin: 0 10px;
+        }
+        footer :last-child {
+            font-size: 14px;
+        }
+        footer :last-child a {
+            text-decoration: none;
+            font-weight: 100;
+            color:rgb(77, 77, 77)
+        }
+        footer :last-child a:hover {
+            color:rgb(190, 190, 190);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <div>
+                <a href="index.html">
+                    <img class="logo" src="image/logo.svg" alt>
+                </a>
+            </div>
+            <div>
+                <a class="headText" href="index.html">Каталог</a>
+            </div>
+            <div>
+                <a class="headText" href="Условия покупки.html">
+                    Условия покупки
+                </a>
+            </div>
+            <div>
+                <a class="headText" href="О Perfecto.html">
+                    О PERFECTO
+                </a>
+                </div>
+            <div class="hederIcons">
+                <div>
+                    <a href="Оформление заказа.html">
+                        <img src="image/packet.svg" alt>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img src="image/team.svg" alt>
+                    </a>
+                </div>
+                <div>
+                    <img src="image/menu.svg" alt>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div>
+            Таблица размеров
+        </div>
+        <div> <!-- флекс -->
+            <div>
+                <div class="tableName">Детские размеры</div>
+                <table>
+                    <thead>   <!-- в оригинале здесь цифры сплюснутые -->
+                        <tr>
+                            <th>Размер</th>
+                            <th>28</th>
+                            <th>30</th>
+                            <th>32</th>
+                            <th>34</th>
+                            <th>36</th>
+                            <th>38</th>
+                            <th>40</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Возраст</td>
+                            <td>4-5</td>
+                            <td>6-7</td>
+                            <td>8-9</td>
+                            <td>10</td>
+                            <td>11</td>
+                            <td>12</td>
+                            <td>от 13</td>
+                        </tr>
+                        <tr>
+                            <td>Рост (max)</td>
+                            <td>114</td>
+                            <td>120</td>
+                            <td>128</td>
+                            <td>138</td>
+                            <td>144</td>
+                            <td>150</td>
+                            <td>156</td>
+                        </tr>
+                        <tr>
+                            <td>Объем груди</td>
+                            <td>56</td>
+                            <td>60</td>
+                            <td>64</td>
+                            <td>68</td>
+                            <td>72</td>
+                            <td>76</td>
+                            <td>80</td>
+                        </tr>
+                        <tr>
+                            <td>Объем талии</td>
+                            <td>50</td>
+                            <td>52</td>
+                            <td>54</td>
+                            <td>57</td>
+                            <td>60</td>
+                            <td>62</td>
+                            <td>64</td>
+                        </tr>
+                        <tr>
+                            <td>Объем бедер</td>
+                            <td>62</td>
+                            <td>66</td>
+                            <td>70</td>
+                            <td>74</td>
+                            <td>78</td>
+                            <td>84</td>
+                            <td>90</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="tableName">Женские размеры</div>
+                <table class="t2">
+                    <thead>
+                        <tr>
+                            <th>Размер</th>
+                            <th>42</th>
+                            <th>44</th>
+                            <th>46</th>
+                            <th>48</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Объем груди</td>
+                            <td>84</td>
+                            <td>88</td>
+                            <td>92</td>
+                            <td>96</td>
+                        </tr>
+                        <tr>
+                            <td>Объем талии</td>
+                            <td>64</td>
+                            <td>68</td>
+                            <td>72</td>
+                            <td>76</td>
+                        </tr>
+                        <tr>
+                            <td>Объем бедер</td>
+                            <td>90</td>
+                            <td>94</td>
+                            <td>98</td>
+                            <td>102</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="reference">
+                <div>
+                    <img src="image/sizeicon.svg" alt>
+                    Объем груди
+                </div>
+                <div>
+                    Снимаем по самым выступающим точкам груди, самнтиметровая лента 
+                    должна плотно прилегать к телу, но не натягиватся.
+                </div>
+                <div>
+                    <img src="image/sizeicon.svg" alt>
+                    Объем талии
+                </div>
+                <div>
+                    Измеряем по самому узкому месту, сантиметровая 
+                    лента должна быть расположена горизонтально.
+                </div>
+                <div>
+                    <img src="image/sizeicon.svg" alt>
+                    Объем бедер
+                </div>
+                <div>
+                    Измеряется по самым выпуклым точкам ягодиц.
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div>
+            <a href="https://www.instagram.com/perfectodance/" target="_blank">
+                INSTAGRAM  
+                <img src="image/bigdoth.svg" alt>
+            </a>
+            <a href="https://vk.com/perfectodance" target="_blank">
+                VKONTAKTE  
+                <img src="image/bigdoth.svg" alt>
+            </a>
+            <a href="https://www.youtube.com/channel/UC-O3jL-1AchibrSEdfHZapA" target="_blank">
+                YOUTUBE  
+                <img src="image/bigdoth.svg" alt>
+            </a>
+            <a href="#">
+                902 21 42  
+            </a>
+        </div>
+        <div>
+            <a href="">
+                PERFECTO
+                <img src="image/smalldoth.svg" alt>
+            </a>
+            Детская танцевальная студия Евгении Яковлевой
+            <img src="image/smalldoth.svg" alt>
+            Санкт-Петербург
+        </div>
+    </footer>
+</body>
+</html>

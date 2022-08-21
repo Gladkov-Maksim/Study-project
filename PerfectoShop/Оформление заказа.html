@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <title>Оформление заказа</title>
+    <style>
+        main {
+            margin: 155px 140px 70px 140px;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+        }
+        /* main > div {
+            height: 1000px;
+        } */
+        .left > div {
+            margin-bottom: 60px;
+        }
+        /* .left {
+            position: relative;
+        } */
+        main .header {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 57px;
+        }
+        .result > div {
+            display: flex;
+            width: 200px;
+            justify-content: space-between;
+            width: 240px;
+            margin-bottom: 15px;
+        }
+        .result > :first-child :last-child {
+            color: #7c7c7c;
+            font-weight: bold;
+        }
+        .result > :last-child {
+            color: blue;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .contactData input {
+            width: 310px;
+            height: 40px;
+            padding-left: 40px;
+            font-size: 18px;
+            border: 1px solid black;
+            outline: none;
+
+        }
+        .contactData > div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            width: 500px;
+        } 
+        /* input[type="radio"] { не знаю как их сделать квадратными
+        } */
+        /* .delivery {
+            position: relative;
+        } */
+        .delivery > :first-child {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .delivery > :first-child ~ div {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+        .delivery span {
+            width: 330px;
+            margin-left: 5px;
+            padding-right: 20px;
+        }
+        .left button {
+            border: none;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            background: #1670E4;
+            /* display: block; */
+            /* position: absolute;
+            right: 0;
+            bottom: 0; */
+            padding: 12px 150px;
+            margin-top: 15px; /* почему-то  маргины не схлопываются*/
+            /* height; почему-то не работает с баттоном
+            width; */
+            cursor: pointer;
+        }
+        .left > :last-child {
+            text-align: right;
+        }
+        .right > :first-child{
+            width: 630px;
+            margin-top: 20px;
+            margin-bottom: 55px;
+        }        
+        .right > :first-child a{
+            color: #7c7c7c;
+            font-size: 16px;
+        }
+        .product {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 70px;
+        }
+        .bottle {
+            width: 175px;
+            height: 195px; /* почему-то растянулось на пропорционатьно. Пришлось дописывать хайт*/
+        }
+        .inf {
+            margin-right: 70px;
+        }
+        .inf > :first-child{
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 45px;
+        }
+        .inf > :nth-child(2){
+            display: flex;
+            justify-content: space-between;
+            width: 250px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .bottleColor {
+            display: flex;
+            align-items: center;
+        }
+        .bottleColor span {
+            margin-right: 5px;
+        }
+        .bottleSize span {/* не получилось сделать как в оригинале*/
+            font-size: 16px;
+            color: #797979;
+            font-weight: 400;
+        }
+        .countAndPrice {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 300px;
+        }
+        .countAndPrice :first-child * {
+            vertical-align: middle;
+        }
+        .countAndPrice :last-child {
+            color: #1670E4;
+            font-weight: bold;
+            font-size: 40px;
+        }
+        .plus, .minus {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <div>
+                <a href="index.html">
+                    <img class="logo" src="image/logo.svg" alt>
+                </a>
+            </div>
+            <div>
+                <a class="headText" href="index.html">Каталог</a>
+            </div>
+            <div>
+                <a class="headText" href="Условия покупки.html">
+                    Условия покупки
+                </a>
+            </div>
+            <div>
+                <a class="headText" href="О Perfecto.html">
+                    О PERFECTO
+                </a>
+            </div>
+            <div class="hederIcons">
+                <div>
+                    <a href="Оформление заказа.html">
+                        <img src="image/packet.svg" alt>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img src="image/team.svg" alt>
+                    </a>
+                </div>
+                <div>
+                    <img src="image/menu.svg" alt>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="left">
+            <div class="header">Оформление заказа</div>
+            <div class="result">
+                <div>
+                    <div>Товары:</div>
+                    <div>1 980Р</div>
+                </div>
+                <div>
+                    <div>Итого:</div>
+                    <div>1 980Р</div>
+                </div>
+            </div>
+            <div class="contactData">
+                <div>
+                    <div>Мое Имя</div>
+                    <div>
+                        <input type="text" required placeholder="Ваше имя">
+                    </div>
+                </div>
+                <div>
+                    <div>Мой телефон</div>
+                    <div>
+                        <input type="text" required placeholder="Ваш телефон">
+                    </div>
+                </div>
+            </div>
+            <div class="delivery">
+                <div>
+                    Выберите пункт самовывоза:
+                </div>
+                <div>
+                    <input type="radio" name="delivery">
+                    <span>
+                        Санкт-Петербург, Долгоозерная 14 к2 (ТРК Пять Озер) 
+                    </span>
+                </div>
+                <div>
+                    <input type="radio" name="delivery">
+                    <span>
+                        Санкт-Петербург, Фёдора Абрамова 6 (СОШ №482) 
+                    </span>
+                </div>
+                <div>
+                    <input type="radio" name="delivery">
+                    <span>
+                        Санкт-Петербург, Ленинский 90
+                    </span>
+                </div>
+                <div>
+                    <input type="radio" name="delivery">
+                    <span>
+                        Санкт-Петербург, Долгоозерная 12 к3
+                    </span>
+                </div>
+            </div>
+            <div>
+                <button>
+                    Далее
+                </button>
+            </div>
+        </div>
+        <div class="right">
+            <div>
+                <a href="#">Назад</a>
+            </div>
+            <div class="product">
+                <img class="bottle" src="image/bottle.jpg" alt>
+                <div class="inf"> 
+                    <div>
+                        Бутылка<br>
+                        питьевая
+                    </div>
+                    <div>
+                        <div class="bottleColor">
+                            <span>
+                                Цвет
+                            </span>
+                            <img src="image/square.svg" alt>
+                        </div>
+                        <div class="bottleSize">
+                            Размер:  
+                            <span>One size</span>
+                        </div>
+                    </div>
+                    <div class="countAndPrice">
+                        <div>
+                            <img class="plus" src="image/plus.svg" alt>
+                            <span>1</span>
+                            <img class="minus" src="image/minus.svg" alt>
+                            
+                        </div>
+                        <div>
+                            990 ₽
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="product">
+                <img class="bottle" src="image/bottle.jpg" alt>
+                <div class="inf"> 
+                    <div>
+                        Бутылка<br>
+                        питьевая
+                    </div>
+                    <div>
+                        <div class="bottleColor">
+                            <span>
+                                Цвет
+                            </span>
+                            <img src="image/square.svg" alt>
+                        </div>
+                        <div class="bottleSize">
+                            Размер:  
+                            <span>One size</span>
+                        </div>
+                    </div>
+                    <div class="countAndPrice">
+                        <div>
+                            <img class="plus" src="image/plus.svg" alt>
+                            <span>1</span>
+                            <img class="minus" src="image/minus.svg" alt>
+                        </div>
+                        <div>
+                            990 ₽
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div>
+            <a href="https://www.instagram.com/perfectodance/" target="_blank">
+                INSTAGRAM
+                <img src="image/bigdoth.svg" alt>
+            </a>
+            <a href="https://vk.com/perfectodance" target="_blank">
+                VKONTAKTE
+                <img src="image/bigdoth.svg" alt>
+            </a>
+            <a href="https://www.youtube.com/channel/UC-O3jL-1AchibrSEdfHZapA" target="_blank">
+                YOUTUBE
+                <img src="image/bigdoth.svg" alt>
+            </a>
+            <a href="#">
+                902 21 42
+            </a>
+        </div>
+        <div>
+            <a href="">
+                PERFECTO
+                <img src="image/smalldoth.svg" alt>
+            </a>
+            Детская танцевальная студия Евгении Яковлевой
+            <img src="image/smalldoth.svg" alt>
+            Санкт-Петербург
+        </div>
+    </footer>
+    <script>  // Работатет только с первым товаром
+        const block = document.querySelectorAll('.countAndPrice')
+        block.forEach(x => {
+            const span = x.querySelector('span')
+            const plus = x.querySelector('.plus')
+            const minus = x.querySelector('.minus')
+            plus.onclick = () => {
+                span.innerText++
+            }
+            minus.onclick = () => {
+                if (span.innerText > 1) {
+                    span.innerText--
+                }
+            }
+        })
+    </script>
+</body>
+</html>
