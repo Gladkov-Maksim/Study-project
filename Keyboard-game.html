@@ -94,7 +94,7 @@
         const fillCircle = (c) => {
             while (true) {
                 let unique = true
-                const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26)) // Почему-то эти значения не соответствуют таблице Ascii. Хотел изначально заполнить русскими буквами.
+                const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26))
                 for (const b of balls) {
                     if (letter === b.innerText) {
                         unique = false
@@ -110,14 +110,6 @@
         }
         balls.forEach(b => {
             let counter = -100
-            // const motion = (ball) => {
-            //     ball.style.top = `${counter++}px` // Как можно на каждой итерации не объявлять функцию? Если пишу ее не в форыче - ругается. counter is not defined.
-            //     console.log(ball.style.top.slice(0, -2), document.documentElement.clientHeight)
-            //     if (ball.style.top.slice(0, -2) == document.documentElement.clientHeight) {
-            //         counter = -100
-            //         console.log(1)
-            //     }
-            // } 192 223
             document.addEventListener('keydown', (e) => {
                 if (e.key.toUpperCase() === b.innerText) {
                     counter = -100

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calendar</title>
+        <style>
+            .wrapper {
+                display: flex;
+                justify-content: space-around;
+            }
+            .calendar {
+                width: 500px;
+                margin-top: 20px;
+                font-size: 22px;
+            }
+            .tableHeader, table {
+                width: 100%;
+                background: rgb(215, 250, 169);
+            }
+            .tableHeader {
+                padding: 10px 130px;
+                display: flex;
+                justify-content: space-between;
+                box-sizing: border-box;
+                border: 2px solid rgb(109, 109, 109); 
+                border-bottom: none;
+            }
+            table {
+                border-collapse: collapse;
+            }
+            td {
+                text-align: center;
+                border: 2px solid rgb(109, 109, 109);
+
+            }
+            tr :nth-child(6), tr :nth-child(7) {
+                color: red;
+            }
+            tbody td {
+                height: 70px;
+            }
+            .last, .next {
+                cursor: pointer;
+                user-select: none;
+            }
+            .month {
+                width: 80px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="calendar">
+                <div class="tableHeader">
+                    <span class="last">◄</span>
+                    <span class="month"></span>
+                    <span class="year"></span>
+                    <span class="next">►</span>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>ПН</td>
+                            <td>ВТ</td>
+                            <td>СР</td>
+                            <td>ЧТ</td>
+                            <td>ПТ</td>
+                            <td>СБ</td>
+                            <td>ВС</td>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script>
+            const monthNamesList = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь',    'Декабрь']
+            const month = document.querySelector('.month')
+            const year = document.querySelector('.year')
+            const tableBody = document.querySelector('tbody')
+            const tableRows = tableBody.querySelectorAll('tr')
+            const tableCells = tableBody.querySelectorAll('td')
+            let currentMonthObject = new Date()
+            const startYear = currentMonthObject.getFullYear()
+            let monthCounter = currentMonthObject.getMonth()
+            const numberGenerator = () => {
+                tableRows[4].style.display = null
+                tableRows[5].style.display = null
+                tableCells.forEach(c => c.innerText = null)
+                let dayCounter = 1
+                const currentMonth = currentMonthObject.getMonth()
+                month.innerText = monthNamesList[currentMonth]
+                const currentYear = currentMonthObject.getFullYear()
+                year.innerText = currentYear
+                let firstNumberWeekDay = (6 + new Date(currentYear, currentMonth, 1).getDay()) % 7
+                const monthLen = new Date(currentYear, currentMonth + 1, 0).getDate()
+                for (let i = firstNumberWeekDay; dayCounter <= monthLen; i++) {
+                    tableCells[i].innerText = dayCounter++
+                }
+                if (!tableCells[28].innerText) {
+                    tableRows[4].style.display = 'none'
+                }
+                if (!tableCells[35].innerText) {
+                    tableRows[5].style.display = 'none'
+                }
+            }
+            numberGenerator()
+            const next = document.querySelector('.next')
+            next.onclick = () => {
+                currentMonthObject = new Date(startYear, ++monthCounter)
+                numberGenerator()
+            }
+            const last = document.querySelector('.last')
+            last.onclick = () => {
+                currentMonthObject = new Date(startYear, --monthCounter)
+                numberGenerator()
+            }
+        </script>
+    </body>
+</html>

@@ -23,16 +23,15 @@
             border-radius: 10px;
             overflow-x: hidden;
             background: white;
-            cursor: grab;  /* лапка плохо работает*/
+            cursor: grab;
         }
-        .frame:active { /* правильно ли выбрал :active? С :focus как я понял работают только input?*/
-            cursor: grabbing;  /* как можно убрать cursor: not-allowed при перетаскивании?  */
+        .frame:active {
+            cursor: grabbing;
         }
         .photo-wrapper {
             display: flex;
             height: 100%;
             transition: margin 1s;
-            /* transition-timing-function: linear; */
         }
         .photo-wrapper > div {
             height: 100%;
@@ -129,7 +128,6 @@
         }
         document.onmouseup = (e) => {
             if (start) {
-                // debugger
                 const photoStartMargin = marginNow() % photoWidth
                 const photoEndMargin = photoWidth + photoStartMargin
                 console.log(marginNow() < -(photoWrapperWidth - frameWidth))
@@ -140,14 +138,12 @@
 
                     margin = marginNow() > 0 ? 0 : marginNow() - photoStartMargin
                 }
-                // const condition = -(margin % photoWidth + margin % photoWidth / 2) > photoWidth
                 photoWrapper.style.transition = 'margin 1s'
-                // margin += condition ? -photoEndMargin : -photoStartMargin
                 photoWrapper.style.marginLeft = `${margin}px`
                 start = false
                 marginNew = 0
             }
-        } // как только смещаем чуть дальше тети с мечем или утят начинается какая-то чертовщина. Не могу понять с чем это связано
+        }
     </script>
 </body>
 </html>

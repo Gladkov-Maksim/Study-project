@@ -2,12 +2,55 @@
 <html lang="ru">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="icon" href="img/favicon.ico">
     <title>Document</title>
+    <style>
+        .wrapper {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 100px;
+        }
+        .wrapper div {
+            padding: 20px;
+            border: 5px solid #807b7b;
+            border-radius: 9999px;
+            font-weight: bold;
+            font-size: 20px;
+            font-family: sans-serif;
+            width: 200px;
+            text-align: center;
+        }
+        .wrapper div:hover {
+            background: #dedbdb;
+        }
+        .wrapper a {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
 </head>
 <body>
-<a href="Keyboard-game.html">Игра</a>
-<a href="Photo-slide-show.html">Слайд-шоу</a>
-<a href="XO.html">Крестики-нолики</a>
-<a href="PerfectoShop/index.html">Интернет-магазин Perfecto</a>
+<div class="wrapper">
+    <a href="Keyboard-game.html">
+        <div>
+            <span>Игра "Буквы"</span>
+        </div>
+    </a>
+    <a href="Photo-slide-show.html">
+        <div>
+            <span>Слайд-шоу</span>
+        </div>
+    </a>
+    <a href="XO.html">
+        <div>
+            <span>Крестики-нолики</span>
+        </div>
+    </a>
+    <a href="Сalendar.html">
+        <div>
+            <span>Календарь</span>
+        </div>
+    </a>
+</div>
 </body>
 </html>
