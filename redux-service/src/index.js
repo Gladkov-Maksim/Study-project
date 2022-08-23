@@ -9,10 +9,6 @@ import store from './redux/store.js'
 import logger from 'redux-logger'
 
 
-
-
-
-
 // const store = createStore(reducer, applyMiddleware(logger))
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
