@@ -1,0 +1,24 @@
+{
+  "name": "pure-js-projects",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "gh-pages": "^4.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gladkov-Maksim/Study-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gladkov-Maksim/Study-project/issues"
+  },
+  "homepage": "https://github.com/Gladkov-Maksim/Study-project#readme"
+}

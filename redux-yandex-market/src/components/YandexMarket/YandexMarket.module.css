@@ -1,0 +1,72 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+.cardPlace {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding: 0 150px;
+}
+
+.productCard {
+    width: 243px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.productCard > :last-child {
+    color: #04b;
+    font-weight: normal;
+    cursor: pointer;
+    user-select: none;
+    font-size: 20px;
+}
+
+.productCard > :last-child:hover {
+    color: red;
+}
+
+.productCard .productPhoto {
+    width: 203px;
+    height: 203px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.priceContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.priceContainer > :first-child {
+    font-size: 25px;
+}
+
+.priceContainer span {
+    font-size: 20px;
+}
+
+
+.priceContainer > :last-child {
+    text-decoration: line-through;
+    color: gray;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.header span {
+    font-size: 25px;
+    color: red;
+}

@@ -3,21 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {createStore} from "redux";
-import {Provider} from 'react-redux'
-
-const reducer = (state = [], action) => {
-    switch (action.type) {
-        case 'ADD': return [...state, action.payload]
-        case 'REMOVE':
-            const newState = [...state]
-            newState.splice(action.payload, 1)
-            return newState
-        default: return state
-    }
-}
-
-const store = createStore(reducer)
+import {Provider} from "react-redux";
+import store from './redux/store'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
