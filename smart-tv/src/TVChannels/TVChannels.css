@@ -1,0 +1,83 @@
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.background {
+    background: rgb(26, 26, 26);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.header {
+    background: rgb(44, 44, 51);
+    display: flex;
+}
+.header :first-child {
+    position: absolute;
+    top: 30px;
+    left: 148.5px;
+}
+
+.header input {
+    margin: 13px 32px;
+    width: 100%;
+    border-radius: 16px;
+    background: rgb(72, 78, 83);
+    outline: none;
+    border: none;
+    font-size: 32px;
+    padding-left: 68px;
+    color: #BCC5CD;
+}
+
+.channelsList {
+    color: rgb(188, 197, 205);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.channelWrapper {
+    width: 260px;
+    height: 230px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.channelWrapper:hover {
+    background: rgb(29, 140, 255)
+}
+
+.channelWrapper:hover .channelName :first-child {
+    color: rgb(153, 203, 255);
+}
+
+.channelWrapper:hover .channelName :last-child {
+    color: white;
+}
+
+.channelWrapper > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.channelWrapper img {
+    width: 120px;
+    margin-bottom: 12px;
+}
+
+.channelName :first-child {
+    color: rgb(140, 154, 167);
+}
+
+
+

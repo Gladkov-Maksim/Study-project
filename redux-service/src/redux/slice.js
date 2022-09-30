@@ -22,6 +22,7 @@ const slice = createSlice({
     initialState: {list:[], search: []},
     reducers: {
         add(store, action) {
+            // console.log(store)
             store.list.push(action.payload)
         },
         edit(store, action) {
