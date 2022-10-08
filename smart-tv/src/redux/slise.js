@@ -14,10 +14,19 @@ const slice = createSlice({
     initialState: {
         data: '',
         search: [],
+        player: { isPlaying: false, src: '' },
     },
     reducers: {
-        search(store, action) {
-            store.search = action.payload
+        search(state, action) {
+            state.search = action.payload
+        },
+        play(state, action) {
+            state.player.isPlaying = true
+            state.player.src = action.payload
+        },
+        stop(state, action) {
+            state.player.isPlaying = false
+            state.player.src = ''
         }
     },
     extraReducers: {
@@ -29,4 +38,4 @@ const slice = createSlice({
 
 export default slice.reducer
 
-export const { search } = slice.actions
+export const { search, play, stop } = slice.actions

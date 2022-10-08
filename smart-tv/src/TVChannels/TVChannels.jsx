@@ -2,8 +2,9 @@ import './TVChannels.css'
 import tvLogo from './img/ctv1.png'
 import magnifierImg from './img/search.png'
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useRef } from 'react';
-import { getData, search } from '../redux/slise'
+import {useCallback, useEffect, useRef} from 'react';
+import { getData, search, play, stop } from '../redux/slise'
+import ReactHlsPlayer from 'react-hls-player'
 
 const filterList = (channels, sub) => {
     const regexp = new RegExp(`^${sub}`, 'i')
@@ -27,12 +28,30 @@ export const TVChannels = () => {
     const state = useSelector(store => store.response)
     const dispatch = useDispatch()
     const searchInput = useRef(null)
-
     const data = state.data
+    const player = state.player
 
     useEffect(() => {
         dispatch(getData())
     }, [])
+
+    const playerRender = useCallback(() => {
+        return (
+                <div className="playerWrapper">
+                    <ReactHlsPlayer
+                        src={player.src}
+                        autoPlay={false}
+                        controls={true}
+                        width="70%"
+                        height="auto"
+                    />
+                    <div
+                        className="close"
+                        onClick={() => dispatch(stop())}
+                    >x</div>
+                </div>
+        )
+    }, [player])
 
     const searchDebounce = debounce((value) => dispatch(search(filterList(data.channels, value))))
 
@@ -54,7 +73,10 @@ export const TVChannels = () => {
                         if (data) {
                             return (searchInput.current.value ? state.search : data.channels).map((item, i) => {
                                 return (
-                                    <div className="channelWrapper" key={item.name_ru + i}>
+                                    <div className="channelWrapper"
+                                         key={item.name_ru + i}
+                                         onClick={() => dispatch(play(item.url))}
+                                    >
                                         <div>
                                             <img src={item.image} alt="Логотип канала"/>
                                             <div className="channelName">
@@ -71,6 +93,7 @@ export const TVChannels = () => {
                     })()
                 }
             </div>
+            {player.isPlaying ? playerRender() : ''}
         </>
     )
 }

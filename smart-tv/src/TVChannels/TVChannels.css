@@ -79,5 +79,33 @@
     color: rgb(140, 154, 167);
 }
 
+.playerWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.close {
+    color: grey;
+    font-size: 100px;
+    font-weight: bold;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 40px;
+}
+
+.close:hover {
+    color: red;
+}
+
+
+
 
 
