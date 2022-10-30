@@ -1,6 +1,9 @@
+.componentName {
+    font-size: 18px;
+    margin-top: 50px;
+}
+
 .wrapper {
-    /* width: 622px;
-    height: 439px; */
     padding: 64px;
     border: 1px solid white;
     margin: 20px;
@@ -66,10 +69,4 @@
 .error {
     color: red;
     font-size: 12px;
-    /*position: absolute;*/
-    /*background: white;*/
-    /*border: 1px solid black;*/
-    /*border-radius: 5px;*/
-    /*padding: 10px;*/
-
 }

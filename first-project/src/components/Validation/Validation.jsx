@@ -32,73 +32,77 @@ const Validation = () => {
         return newData
     })
 
-    // noinspection JSCheckFunctionSignatures
     const handleTouched = (field) => () => setTouches({...touches, [field] : true})
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.header}>Sign up for a free account</div>
-            <div className={styles.nameAndLastName}>
-                <div>
-                    <input
-                        type="text"
-                        value={formData.name} 
-                        placeholder="First name" 
-                        onChange={handleChangeInput('name')}
-                        onBlur={handleTouched('name')}
-                    />
-                    <div>{/*Не до конца понял как сделать всплывающие окна*/}
-                        {errors.name && touches.name && <div className={styles.error}>{errors.name}</div>}
-                    </div>
-                </div>
-                <div>
-                    <input
-                        placeholder="Last name"
-                        type="text"
-                        onChange={handleChangeInput('lastName')}
-                        onBlur={handleTouched('lastName')}
-                    />
+        <>
+            <div className={styles.componentName}>ВАЛИДАЦИЯ</div>
+            <div className={styles.wrapper}>
+                <div></div>
+                <div className={styles.header}>Sign up for a free account</div>
+                <div className={styles.nameAndLastName}>
                     <div>
-                        {errors.lastName && touches.lastName && <div className={styles.error}>{errors.lastName}</div>}
+                        <input
+                            type="text"
+                            value={formData.name}
+                            placeholder="First name"
+                            onChange={handleChangeInput('name')}
+                            onBlur={handleTouched('name')}
+                        />
+                        <div>
+                            {errors.name && touches.name && <div className={styles.error}>{errors.name}</div>}
+                        </div>
+                    </div>
+                    <div>
+                        <input
+                            placeholder="Last name"
+                            type="text"
+                            onChange={handleChangeInput('lastName')}
+                            onBlur={handleTouched('lastName')}
+                        />
+                        <div>
+                            {errors.lastName && touches.lastName && <div className={styles.error}>{errors.lastName}</div>}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className={styles.email}>
-                <input
-                    placeholder="Email address"
-                    type="email"
-                    onChange={handleChangeInput('email')}
-                    onBlur={handleTouched('email')}/>
-                <div>
-                    {errors.email && touches.email && <div className={styles.error}>{errors.email}</div>}
+                <div className={styles.email}>
+                    <input
+                        placeholder="Email address"
+                        type="email"
+                        onChange={handleChangeInput('email')}
+                        onBlur={handleTouched('email')}/>
+                    <div>
+                        {errors.email && touches.email && <div className={styles.error}>{errors.email}</div>}
+                    </div>
                 </div>
-            </div>
-            <div className={styles.password}>
-                <input
-                    placeholder="Create password"
-                    type="password"
-                    onChange={handleChangeInput('password')}
-                    onBlur={handleTouched('password')}/>
-                <div>
-                    {errors.password && touches.password && <div className={styles.error}>{errors.password}</div>}
+                <div className={styles.password}>
+                    <input
+                        placeholder="Create password"
+                        type="password"
+                        onChange={handleChangeInput('password')}
+                        onBlur={handleTouched('password')}/>
+                    <div>
+                        {errors.password && touches.password && <div className={styles.error}>{errors.password}</div>}
+                    </div>
                 </div>
-            </div>
-            <div className={styles.buttonWrapper}>
-                <button
-                    disabled={false}
-                    onClick={() => {
-                        alert(`
+                <div className={styles.buttonWrapper}>
+                    <button
+                        disabled={false}
+                        onClick={() => {
+                            alert(`
                             Имя:  ${formData.name ? formData.name : 'пусто'}\n
                             Фамилия:  ${formData.lastName ? formData.lastName : 'пусто'}\n
                             Email:  ${formData.email ? formData.email : 'пусто'}\n
                             Пароль:  ${formData.password ? formData.password : 'пусто'
-                        }`)
-                    }}
-                >
-                    Register
-                </button>
+                            }`)
+                        }}
+                    >
+                        Register
+                    </button>
+                </div>
             </div>
-        </div>
+        </>
+
     )
 }
 

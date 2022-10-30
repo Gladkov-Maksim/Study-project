@@ -1,9 +1,11 @@
-input {
-    border-radius: 5px;
+.componentName {
+    font-size: 18px;
+    margin-top: 50px;
 }
 
-.input {
-    margin: 10px;
+input {
+    margin-top: 15px;
+    border-radius: 5px;
 }
 
 .square {

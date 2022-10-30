@@ -1,0 +1,14 @@
+.header {
+
+}
+
+.header .wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.wrapper > div{
+  cursor: pointer
+}

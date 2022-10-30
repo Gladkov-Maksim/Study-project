@@ -3,96 +3,95 @@ import styles from './Color-converter.module.css'
 import background from './background.jpg'
 
 const ColorConverter = () => {
-    const [ hexTouched, setHexTouched ] = useState(false)
-    const [ rgbTouched, setRgbTouched ] = useState(false)
-    const [ hexValid , setHexValid ] = useState(false)
-    const [ rgbValid , setRgbValid ] = useState(false)
-    const [ hexState, setHexState ] = useState('')
-    const [ rgbState, setRgbState ] = useState({})
+
+    const initialState = { hex: '#', rgb: 'rgb()'}
+
+    const regExps = {
+        hex: /^#[\da-f]{6}$/,
+        rgb: /^(rgb)?\(?([01]?\d\d?|2[0-4]\d|25[0-5])(\W+)([01]?\d\d?|2[0-4]\d|25[0-5])\W+(([01]?\d\d?|2[0-4]\d|25[0-5])\)?)$/
+    }
+
+    const [ touched, setTouched ] = useState({hex: false, rgb: false})
+    const [ valid , setValid ] = useState({hex: false, rgb: false})
+    const [ values , setValues ] = useState(initialState)
+    const [ inputsOrder, setInputsOrder] = useState({ first: 'hex', second: 'rgb'})
 
     const hexInputRef = useRef(null)
     const rgbInputRef = useRef(null)
 
-    useEffect( () => {
-        if (hexValid) { // - костыль, но сам запутался и  не знаю как по-другому
-            const red = parseInt(hexState.slice(1,3), 16)
-            const green = parseInt(hexState.slice(3,5), 16)
-            const blue = parseInt(hexState.slice(5,7), 16)
-            setRgbState({r: red, g: green, b: blue})
-        }
-    }, [hexValid])
-
     useEffect(() => {
         hexInputRef.current.focus()
-        hexInputRef.current.value = '#'
-        rgbInputRef.current.value = 'rgb()'
     }, [])
 
-    useEffect(() => {
-        setHexValid(/^#[\da-f]{6}$/.test(hexState))
-    }, [hexState])
+    const handleInputValueChange = useCallback((ref) => {
+        if (ref.current) setValues(prev => ({...prev, [ref.current.dataset.type]: ref.current.value}))
+        const isValid = regExps[ref.current.dataset.type].test(ref.current.value)
+        setValid(prev => ({...prev, [ref.current.dataset.type]:isValid}))
+    }, [])
 
-    useEffect(() => {
-        setRgbValid(/^rgb([0-255],[0-255],[0-255])$/.test(hexState))
-    }, [rgbState])
-
-    // const hexInput = useRef()
-
-    const handleInputChange = useCallback((ref) => ()=> {
-        if (ref.current.dataset.type === 'hex' ) {
-            if (ref.current.value[0] !== '#') {
-                ref.current.value = '#' + ref.current.value
-            }
-            setHexState(ref.current.value)
+    const backgroundColor = () => {
+        if (inputsOrder.first === 'hex') {
+            const red = parseInt(values.hex.slice(1,3), 16)
+            const green = parseInt(values.hex.slice(3,5), 16)
+            const blue = parseInt(values.hex.slice(5,7), 16)
+            return `rgb(${red},${green},${blue})`
         }
-        else if (ref.current.dataset.type === 'rgb') {
-            setHexState(ref.current.value)
+        else {
+            return values.rgb
         }
-        }, [])
+    }
 
-    const containerStyle = useMemo( ()=> hexValid ? {backgroundColor: `rgb(${rgbState.r},${rgbState.g},${rgbState.b})`} : {backgroundImage: `url(${background}`}, [hexValid, rgbState])
-     /***
-            TODO: Сделать валидацию hexState
-            первый символ = #,
-            всего 7 симвоов,
-            символы, кроме # имеют диапазон от 0 до f
-      */
+    const handleChangeOrder = () => {
+        setInputsOrder(prev => ({ first: prev.second, second: prev.first }))
+        setValues(prev => ({...prev, [inputsOrder.first]: initialState[inputsOrder.first]}))
+        setValid(prev => ({...prev, [inputsOrder.first]: false}))
+        setTouched({hex: false, rgb: false})
+    }
+
+    const warning = (order) => {
+        if (!valid[inputsOrder[order]] && touched[inputsOrder[order]] && order === 'first') {
+            return <div className={styles.error}>{inputsOrder[order] === 'hex' ? 'Название цвета должно начинаться с # и содержать цифры или буквы от a до f' : 'Название цвета должно иметь вид rgb(0-255,0-255,0-255)'}</div>
+        }
+    }
+
+    const containerStyle =  valid[inputsOrder.first] ? {backgroundColor: backgroundColor()} : {backgroundImage: `url(${background}`}
+
+    const input = (order) => {
+        return (
+            <div className={styles.inputContainer}>
+                <input
+                    type="text"
+                    data-type={inputsOrder[order]}
+                    value={inputsOrder[order] === 'rgb' ? values.rgb : values.hex}
+                    ref={inputsOrder[order] === 'rgb' ? rgbInputRef : hexInputRef}
+                    maxLength={inputsOrder[order] === 'rgb' ? 16 : 7}
+                    onBlur={ () => setTouched(prev => ({...prev, [inputsOrder[order]]: true}))}
+                    onChange={() => handleInputValueChange(inputsOrder[order] === 'rgb' ? rgbInputRef : hexInputRef)}
+                    readOnly={order === 'second'}
+                />
+                {warning(order)}
+            </div>
+        )
+    }
 
     return (
-        <div
-            className={styles.wrapper}
-            style={containerStyle}
-        >
-            <div>
-                <input
-                    type="text"
-                    data-type="hex"
-                    ref={hexInputRef}
-                    maxLength={7}
-                    onChange={handleInputChange(hexInputRef)}
-                    onBlur={ () => setHexTouched(true)}
-                />
-                {!hexValid && hexTouched && <div className={styles.error}>Название цвета должно начинаться с # и содержать цифры или буквы от a до f</div>}
-                <input
-                    type="text"
-                    data-type="rgb"
-                    ref={rgbInputRef}
-                    maxLength={16}
-                    onBlur={ () => setRgbTouched(true)}
-                    onChange={handleInputChange(rgbInputRef)}
-                />
-                {!rgbValid && rgbTouched && <div className={styles.error}>Название цвета должно иметь вид rgb(0-255,0-255,0-255)</div>}
-                {/*<div className={styles.rgb}>*/}
-                {/*    <span>*/}
-                {/*        {valid && `rgb(${rgbState.r},${rgbState.g},${rgbState.b})`}*/}
-                {/*    </span>*/}
-
-                {/*</div>*/}
+        <>
+            <div className={styles.componentName}>КОНВЕРТЕР ЦВЕТОВ</div>
+            <div
+                className={styles.wrapper}
+                style={containerStyle}
+            >
+                <div>
+                    {input('first')}
+                    {input('second')}
+                </div>
+                <span
+                    className={styles.changeInput}
+                    onClick={handleChangeOrder}
+                >⇅</span>
             </div>
-        </div>
+        </>
     )
 }
 
 export default ColorConverter
-
-
